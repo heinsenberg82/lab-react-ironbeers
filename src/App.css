@@ -1,14 +1,12 @@
 .App {
-  
+    padding: 0;
+    display: flex;
+    background-position: left !important;
+    justify-content: center;
 }
 
 section {
     display: flex;
-    border: 5px solid red;
-}
-
-section:hover {
-    border: 5px solid red;
 }
 
 .opacity-layer:hover {
@@ -20,11 +18,13 @@ section > div:first-child {
     height: auto;
     min-height: 300px;
     padding: 0;
-    z-index: -1;
+    border-radius: 20px;
+    margin: 20px;
 }
 
-section > div:first-child * {
-    z-index: 2;
+section > div:first-child:hover{
+    border: 5px solid #ff9800;
+    transition: border 200ms;
 }
 
 section h2 {
@@ -55,6 +55,6 @@ section span {
     text-shadow: 1px 1px 0 black;
     margin: 0px 26px;
     font-weight: bold;
-    bottom: 294px;
+    top: 15px;
     position: relative;
 }

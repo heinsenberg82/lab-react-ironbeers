@@ -1,19 +1,19 @@
 import './App.css';
-import {Container, Divider, Stack} from "@mui/material";
-import AllBeers from "./components/AllBeers";
-import RandomBeer from "./components/RandomBeer";
-import NewBeer from "./components/NewBeer";
+import {Container, Stack} from "@mui/material";
+import Background from "./assets/background.jpg"
+import {Route, Routes} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AllBeersPage from "./pages/AllBeersPage";
 
 function App() {
-  return (
-    <div className="App">
-      <Container style={{padding: 0}}>
-          <Stack spacing={3} >
-              <AllBeers />
-              <RandomBeer />
-              <NewBeer />
-          </Stack>
-      </Container>
+    return (
+    <div className="App" style={{background: `url(${Background})`}}>
+        <Container maxWidth="md">
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/AllBeers" element={<AllBeersPage/>}/>
+            </Routes>
+        </Container>
     </div>
   );
 }
