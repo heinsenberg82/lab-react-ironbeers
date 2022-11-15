@@ -1,20 +1,45 @@
 ﻿import {useState, useEffect} from "react";
 import axios from "axios";
-import {Breadcrumbs, Card, CardContent, CardHeader, CardMedia, Link, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Card, CardContent, CardHeader, CardMedia, Link, Modal, Typography} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import BeerdCardDetails from "../components/BeerdCardDetails";
+import BeerCardDetails from "../components/BeerCardDetails";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from '@mui/icons-material/Grain';
+import BeerCard from "../components/BeerdCard";
 
 export default function AllBeersPage(props) {
     const [allBeers, setAllBeers] = useState([]);
+    const [ selectedBeer, setSelectedBeer ] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
+
+    const modalStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 0,
+        
+    };
+    
+    const handleModalOpen = clickedBeer => {
+        setSelectedBeer(clickedBeer);
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setSelectedBeer(null);
+        setOpenModal(false);
+    };
 
     useEffect(() => {
         const getAllBeers = () => {
-            const allBeers = axios
+            axios
                 .get("https://ih-beers-api2.herokuapp.com/beers")
                 .then(result => {
-                    console.log(result.data);
                     setAllBeers(result.data);
                 })
         }
@@ -23,7 +48,7 @@ export default function AllBeersPage(props) {
     
     
     return (
-        <div style={{minHeight: 800}}>
+        <>
             <Breadcrumbs aria-label="breadcrumb" style={{ padding: "25px 0" }}>
                 <Link
                     underline="hover"
@@ -43,12 +68,17 @@ export default function AllBeersPage(props) {
                 </Typography>
             </Breadcrumbs>
             <Grid2 container spacing={2}>
-                { allBeers && allBeers.map(beer =>
+                { allBeers?.length > 0 && allBeers.map(beer =>
                     <Grid2 xs={6} md={4} >
-                        <BeerdCardDetails beer={beer} />
+                        <BeerCard beer={beer} openModal={handleModalOpen}/>
                     </Grid2>
                 )}
             </Grid2>
-        </div>
+            <Modal open={openModal} onClose={handleModalClose} >
+                <Box sx={ modalStyle}>
+                    <BeerCardDetails beer={selectedBeer}/>
+                </Box>
+            </Modal>
+        </>
     );
 }

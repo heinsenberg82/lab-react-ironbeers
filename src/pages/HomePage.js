@@ -9,7 +9,7 @@ export default function HomePage(props) {
 
     const features = [
         { title: "All Beers", image: Beers, lorem, link: "/beers" },
-        { title: "Random Beer", image: RandomBeerPng, lorem},
+        { title: "Random Beer", image: RandomBeerPng, lorem, link: "/random-beer"},
         { title: "New Beer", image: NewBeerPng, lorem}
     ]
     

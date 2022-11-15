@@ -1,9 +1,9 @@
 import './App.css';
-import {Container, Stack} from "@mui/material";
-import Background from "./assets/background.jpg"
+import {Container} from "@mui/material";
 import {Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AllBeersPage from "./pages/AllBeersPage";
+import RandomBeerPage from "./pages/RandomBeerPage";
 
 function App() {
     return (
@@ -12,6 +12,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/beers" element={<AllBeersPage/>}/>
+                <Route path="/random-beer" element={<RandomBeerPage/>}/>
             </Routes>
         </Container>
     </div>

@@ -1,7 +1,12 @@
-﻿import {Card, CardContent, CardHeader, CardMedia, Typography} from "@mui/material";
-import "./BeerCardDetails.css"
+﻿import {Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography} from "@mui/material";
+import "./BeerCard.css"
 
-export default function BeerdCardDetails({beer}) {
+export default function BeerCard({beer, openModal}) {
+    const handleClick = e => {
+        e.preventDefault();
+        openModal(beer);
+    }
+    
     return (
         <Card sx={{minHeight: "100%"}}>
             <CardHeader title={beer.name} subheader={beer.tagline}/>
@@ -13,6 +18,9 @@ export default function BeerdCardDetails({beer}) {
                     Created by: {beer.contributed_by}
                 </Typography>
             </CardContent>
+            <CardActions>
+                <Button size="small" onClick={handleClick}>Learn More</Button>
+            </CardActions>
         </Card>
     );
 }
