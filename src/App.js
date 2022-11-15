@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {Container, Divider, Stack} from "@mui/material";
+import AllBeers from "./components/AllBeers";
+import RandomBeer from "./components/RandomBeer";
+import NewBeer from "./components/NewBeer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container style={{padding: 0}}>
+          <Stack spacing={3} >
+              <AllBeers />
+              <RandomBeer />
+              <NewBeer />
+          </Stack>
+      </Container>
     </div>
   );
 }
