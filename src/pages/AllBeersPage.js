@@ -1,11 +1,12 @@
 ﻿import {useState, useEffect} from "react";
 import axios from "axios";
-import {Box, Breadcrumbs, Card, CardContent, CardHeader, CardMedia, Link, Modal, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Link as MuiLink, Modal, Typography} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import BeerCardDetails from "../components/BeerCardDetails";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from '@mui/icons-material/Grain';
 import BeerCard from "../components/BeerdCard";
+import {Link} from "react-router-dom";
 
 export default function AllBeersPage(props) {
     const [allBeers, setAllBeers] = useState([]);
@@ -50,15 +51,15 @@ export default function AllBeersPage(props) {
     return (
         <>
             <Breadcrumbs aria-label="breadcrumb" style={{ padding: "25px 0" }}>
-                <Link
+                <MuiLink
                     underline="hover"
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="inherit"
-                    href="/"
+                    component={Link} to="/"
                 >
                     <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                     Home
-                </Link>
+                </MuiLink>
                 <Typography
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="text.primary"

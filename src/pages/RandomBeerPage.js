@@ -1,10 +1,11 @@
-﻿import { Breadcrumbs, Link, Typography} from "@mui/material";
+﻿import { Breadcrumbs, Link as MuiLink, Typography} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import BeerCardDetails from "../components/BeerCardDetails";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export default function RandomBeerPage(props) {
     const [randomBeer, setRandomBeer] = useState(null);
@@ -23,15 +24,15 @@ export default function RandomBeerPage(props) {
     return (
         <>
             <Breadcrumbs aria-label="breadcrumb" style={{ padding: "25px 0" }}>
-                <Link
+                <MuiLink
                     underline="hover"
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="inherit"
-                    href="/"
+                    component={Link} to="/"
                 >
                     <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                     Home
-                </Link>
+                </MuiLink>
                 <Typography
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="text.primary"

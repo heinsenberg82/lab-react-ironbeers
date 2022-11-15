@@ -1,5 +1,14 @@
 ﻿import "./BeerCard.css"
-import {Button, Card, CardActions, CardContent, CardHeader, CardMedia, Grid, Stack, Typography} from "@mui/material";
+import {Card, CardContent, CardHeader, CardMedia, Grid, Stack, Typography} from "@mui/material";
+import moment from "moment";
+
+const handleDate = dateString => {
+    const parsed = moment(dateString);
+    console.log(parsed)
+    return parsed.isValid()
+        ? parsed.format("MM/YYYY")
+        : dateString;
+}
 
 export default function BeerCardDetails({beer}) {
     return (
@@ -20,7 +29,7 @@ export default function BeerCardDetails({beer}) {
                             {beer.tagline}
                         </Typography>
                         <Typography variant="body2" component="span">
-                            {beer.first_brewed}
+                            {handleDate(beer.first_brewed)}
                         </Typography>
                     </Stack>
                 </div>
