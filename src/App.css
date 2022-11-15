@@ -1,19 +1,21 @@
 .App {
-    padding: 0;
+    padding: 10px 0;
     display: flex;
     background-position: left !important;
     justify-content: center;
+    background: #ffb74d;
+    height: 100%;
 }
 
-section {
+section a {
     display: flex;
 }
 
-.opacity-layer:hover {
-    opacity: 0;
+section a {
+    text-decoration: none;
 }
 
-section > div:first-child {
+section > a > div:first-child {
     background-size: cover !important;
     height: auto;
     min-height: 300px;
@@ -22,7 +24,7 @@ section > div:first-child {
     margin: 20px;
 }
 
-section > div:first-child:hover{
+section > a > div:first-child:hover{
     border: 5px solid #ff9800;
     transition: border 200ms;
 }

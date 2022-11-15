@@ -7,11 +7,11 @@ import AllBeersPage from "./pages/AllBeersPage";
 
 function App() {
     return (
-    <div className="App" style={{background: `url(${Background})`}}>
-        <Container maxWidth="md">
+    <div className="App" style={{overflow: "auto"}}>
+        <Container maxWidth="md" style={{height: "100%"}}>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route path="/AllBeers" element={<AllBeersPage/>}/>
+                <Route path="/beers" element={<AllBeersPage/>}/>
             </Routes>
         </Container>
     </div>
