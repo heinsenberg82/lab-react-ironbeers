@@ -21,7 +21,6 @@ export default function AllBeersPage(props) {
     const [allBeers, setAllBeers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState("");
-    const [filteredBeers, setFilteredBeers] = useState([]);
 
     useEffect(() => {
         const getAllBeers = () => {
@@ -48,7 +47,7 @@ export default function AllBeersPage(props) {
                     underline="hover"
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="inherit"
-                    component={Link} to="/"
+                    component={Link} to="../"
                 >
                     <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                     Home

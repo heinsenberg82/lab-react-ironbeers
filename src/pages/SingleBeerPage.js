@@ -35,7 +35,7 @@ export default function SingleBeerPage() {
                     underline="hover"
                     sx={{ display: 'flex', alignItems: 'center' }}
                     color="inherit"
-                    component={Link} to="/"
+                    component={Link} to="../"
                 >
                     <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                     Home
