@@ -1,4 +1,5 @@
-﻿import {Alert, Breadcrumbs, Button, Link as MuiLink, Snackbar, Stack, TextField, Typography} from "@mui/material";
+﻿import {Alert, Breadcrumbs, Link as MuiLink, Snackbar, Stack, TextField, Typography} from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import {Link} from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
@@ -23,13 +24,16 @@ export default function NewBeerPage() {
         message: ""
     });
     
+    const [isLoading, setIsLoading] = useState(false);
+    
     const updateForm = obj => setFormData({ ...formData, ...obj });
     
     const handleFormSubmit = async e => {
         e.preventDefault();
         try {
+            setIsLoading(true);
             const response = await axios.post("https://ih-beers-api2.herokuapp.com/beers/new", formData);
-            console.log(response)
+            
             if (response.status === 200 || response.status === 201){
                 setSnackbar({
                    show: true,
@@ -38,13 +42,14 @@ export default function NewBeerPage() {
                 });
             }
         } catch (err) {
-            console.log(err)
             let message = typeof err.response !== "undefined" ? err.response.statusText : err.message;
             setSnackbar({
                 show: true,
                 severity: "error",
                 message: message
             });
+        } finally {
+            setIsLoading(false);
         }
     };
     
@@ -95,7 +100,15 @@ export default function NewBeerPage() {
                     <TextField id="brewers-tips" label="Brewers tips" variant="outlined" onChange={ e => updateForm({ brewers_tips:  e.target.value}) } />
                     <TextField id="attenuation-level" label="Attenuation Level" variant="outlined" onChange={ e => updateForm({ attenuation_level:  e.target.value}) }/>
                     <TextField id="contributed-by" label="Contributed by" variant="outlined" onChange={ e => updateForm({ contributed_by:  e.target.value}) }/>
-                    <Button variant="contained" type="submit">Add</Button>
+                    <LoadingButton
+                        size="small"
+                        type="submit"
+                        loading={isLoading}
+                        loadingIndicator="Adding…"
+                        variant="contained"
+                    >
+                        Add Beer
+                    </LoadingButton>
                 </Stack>
             </form>
             <Snackbar open={snackbar.show} autoHideDuration={6000} onClose={handleCloseSnackbar} anchorOrigin={{vertical: "bottom", horizontal: "center"}} >

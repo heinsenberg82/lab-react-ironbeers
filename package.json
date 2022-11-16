@@ -1,12 +1,12 @@
 {
   "name": "lab-react-ironbeers",
-  "homepage": "https://heinsenberg82.github.io/lab-react-ironbeers",
   "version": "2.2.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.14",
+    "@mui/lab": "^5.0.0-alpha.108",
     "@mui/material": "^5.10.13",
     "@mui/x-date-pickers": "^5.0.8",
     "@testing-library/jest-dom": "^5.16.4",
@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
