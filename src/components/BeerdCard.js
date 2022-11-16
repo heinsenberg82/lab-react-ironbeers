@@ -1,10 +1,13 @@
 ﻿import {Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography} from "@mui/material";
 import "./BeerCard.css"
+import {useNavigate} from "react-router-dom";
 
-export default function BeerCard({beer, openModal}) {
+export default function BeerCard({beer}) {
+    const navigate = useNavigate();
+    
     const handleClick = e => {
         e.preventDefault();
-        openModal(beer);
+        navigate(`/beers/${ beer._id }`);
     }
     
     return (

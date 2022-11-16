@@ -1,52 +1,45 @@
 ﻿import {useState, useEffect} from "react";
 import axios from "axios";
-import {Box, Breadcrumbs, Link as MuiLink, Modal, Typography} from "@mui/material";
+import {
+    Box,
+    Breadcrumbs,
+    CircularProgress,
+    IconButton,
+    InputBase,
+    Link as MuiLink,
+    Paper,
+    Typography
+} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import BeerCardDetails from "../components/BeerCardDetails";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from '@mui/icons-material/Grain';
+import SearchIcon from '@mui/icons-material/Search';
 import BeerCard from "../components/BeerdCard";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function AllBeersPage(props) {
     const [allBeers, setAllBeers] = useState([]);
-    const [ selectedBeer, setSelectedBeer ] = useState(null);
-    const [openModal, setOpenModal] = useState(false);
-
-    const modalStyle = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 0,
-        
-    };
-    
-    const handleModalOpen = clickedBeer => {
-        setSelectedBeer(clickedBeer);
-        setOpenModal(true);
-    };
-
-    const handleModalClose = () => {
-        setSelectedBeer(null);
-        setOpenModal(false);
-    };
+    const [loading, setLoading] = useState(false);
+    const [filter, setFilter] = useState("");
+    const [filteredBeers, setFilteredBeers] = useState([]);
 
     useEffect(() => {
         const getAllBeers = () => {
+            setLoading(true);
+            
+            const url = filter 
+                ? `https://ih-beers-api2.herokuapp.com/beers/search?q=${filter}`
+                : "https://ih-beers-api2.herokuapp.com/beers";
+            
             axios
-                .get("https://ih-beers-api2.herokuapp.com/beers")
+                .get(url)
                 .then(result => {
                     setAllBeers(result.data);
                 })
+                .finally(() => setLoading(false));
         }
         getAllBeers();
-    }, []);
-    
+    }, [filter]);   
     
     return (
         <>
@@ -68,18 +61,30 @@ export default function AllBeersPage(props) {
                     Beers
                 </Typography>
             </Breadcrumbs>
-            <Grid2 container spacing={2}>
+            <Paper
+                sx={{ p: '2px 4px', m: '15px 0', display: 'flex', alignItems: 'center', width: "100%" }}
+            >
+                <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder="Search Beer"
+                    inputProps={{ 'aria-label': 'search beer' }}
+                    onChange={e => setFilter(e.target.value)}
+                />
+                <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                    <SearchIcon />
+                </IconButton>
+            </Paper>
+            { loading && 
+                <Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", minHeight: 200}}>
+                    <CircularProgress />
+                </Box>}
+            { !loading && <Grid2 container spacing={2}>
                 { allBeers?.length > 0 && allBeers.map(beer =>
                     <Grid2 xs={6} md={4} >
-                        <BeerCard beer={beer} openModal={handleModalOpen}/>
+                        <BeerCard beer={beer}/>
                     </Grid2>
                 )}
-            </Grid2>
-            <Modal open={openModal} onClose={handleModalClose} >
-                <Box sx={ modalStyle}>
-                    <BeerCardDetails beer={selectedBeer}/>
-                </Box>
-            </Modal>
+            </Grid2> }
         </>
     );
 }
