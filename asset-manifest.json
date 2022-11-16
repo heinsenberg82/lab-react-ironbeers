@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/lab-react-ironbeers/static/css/main.efa79078.css",
-    "main.js": "/lab-react-ironbeers/static/js/main.b66fce58.js",
+    "main.js": "/lab-react-ironbeers/static/js/main.55c702fa.js",
     "static/media/beers.png": "/lab-react-ironbeers/static/media/beers.8594ca398b2c62fc8ae7.png",
     "static/media/random-beer.png": "/lab-react-ironbeers/static/media/random-beer.c6e75e72fce76e9febef.png",
     "static/media/new-beer.png": "/lab-react-ironbeers/static/media/new-beer.afe490fa79be2cec5812.png",
     "index.html": "/lab-react-ironbeers/index.html",
     "main.efa79078.css.map": "/lab-react-ironbeers/static/css/main.efa79078.css.map",
-    "main.b66fce58.js.map": "/lab-react-ironbeers/static/js/main.b66fce58.js.map"
+    "main.55c702fa.js.map": "/lab-react-ironbeers/static/js/main.55c702fa.js.map"
   },
   "entrypoints": [
     "static/css/main.efa79078.css",
-    "static/js/main.b66fce58.js"
+    "static/js/main.55c702fa.js"
   ]
 }
